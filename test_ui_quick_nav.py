@@ -4,13 +4,12 @@ import pytest
 from playwright.sync_api import Playwright, sync_playwright, expect
 from pytest import mark
 
-# import utils.secret_config
 from home_page_elements import HomePage
 
 
 @mark.ui
 def test_homepage_navigation(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch(headless=True, slow_mo=1000)
+    browser = playwright.chromium.launch(headless=False, slow_mo=1000)
     context = browser.new_context()
 
     # Open new page
@@ -19,15 +18,15 @@ def test_homepage_navigation(playwright: Playwright) -> None:
     # Go to https://shahlep.myshopify.com/password
     #page.goto("https://shahlep.myshopify.com/password")
     page.goto(HomePage.home_url)
+    page.pause()
     # Click input[name="password"]
     page.locator(HomePage.login_password_input).click()
     # Fill input[name="password"]
     page.locator(HomePage.login_password_input).fill(os.environ['PASSWORD'])
-
     # Click button:has-text("Enter")
     page.locator(HomePage.login_submit).click()
     # expect(page).to_have_url("https://shahlep.myshopify.com/")
-    expect(page).to_have_url(HomePage.home_url)
+    #expect(page).to_have_url(HomePage.home_url)
     # Click span:has-text("Catalog")
     page.locator(HomePage.navbar_catalog_btn).click()
     # expect(page).to_have_url("https://shahlep.myshopify.com/collections/all")
