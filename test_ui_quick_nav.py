@@ -1,3 +1,5 @@
+import os
+
 import pytest
 from playwright.sync_api import Playwright, sync_playwright, expect
 from pytest import mark
@@ -19,7 +21,7 @@ def test_homepage_navigation(playwright: Playwright) -> None:
     # Click input[name="password"]
     page.locator(HomePage.login_password_input).click()
     # Fill input[name="password"]
-    page.locator(HomePage.login_password_input).fill(utils.secret_config.PASSWORD)
+    page.locator(HomePage.login_password_input).fill(os.environ['PASSWORD'])
 
     # Click button:has-text("Enter")
     page.locator(HomePage.login_submit).click()
