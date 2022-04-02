@@ -17,8 +17,8 @@ def test_homepage_navigation(playwright: Playwright) -> None:
     page = context.new_page()
 
     # Go to https://shahlep.myshopify.com/password
-    page.goto("https://shahlep.myshopify.com/password")
-
+    #page.goto("https://shahlep.myshopify.com/password")
+    page.goto(HomePage.home_url)
     # Click input[name="password"]
     page.locator(HomePage.login_password_input).click()
     # Fill input[name="password"]
