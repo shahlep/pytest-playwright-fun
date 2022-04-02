@@ -1,6 +1,4 @@
 import os
-
-import pytest
 from playwright.sync_api import Playwright, sync_playwright, expect
 from pytest import mark
 
@@ -14,9 +12,6 @@ def test_homepage_navigation(playwright: Playwright) -> None:
 
     # Open new page
     page = context.new_page()
-
-    # Go to https://shahlep.myshopify.com/password
-    #page.goto("https://shahlep.myshopify.com/password")
     page.goto(HomePage.home_url)
     page.pause()
     # Click input[name="password"]
@@ -26,7 +21,7 @@ def test_homepage_navigation(playwright: Playwright) -> None:
     # Click button:has-text("Enter")
     page.locator(HomePage.login_submit).click()
     # expect(page).to_have_url("https://shahlep.myshopify.com/")
-    #expect(page).to_have_url(HomePage.home_url)
+    expect(page).to_have_url(HomePage.home_url)
     # Click span:has-text("Catalog")
     page.wait_for_selector(HomePage.navbar_catalog_btn)
     #page.locator(HomePage.navbar_catalog_btn).is_visible(timeout=5000)
