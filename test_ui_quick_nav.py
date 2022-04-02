@@ -4,8 +4,9 @@ import pytest
 from playwright.sync_api import Playwright, sync_playwright, expect
 from pytest import mark
 
-import utils.secret_config
+# import utils.secret_config
 from home_page_elements import HomePage
+
 
 @mark.ui
 def test_homepage_navigation(playwright: Playwright) -> None:
