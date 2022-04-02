@@ -28,27 +28,16 @@ def test_homepage_navigation(playwright: Playwright) -> None:
 
     page.locator(HomePage.login_submit).click()
 
+    page.wait_for_load_state()
     expect(page).to_have_url(HomePage.home_url)
-
-    #page.wait_for_selector(HomePage.navbar_catalog_btn, timeout=6000)
 
     page.locator(HomePage.navbar_catalog_btn).click()
 
     expect(page).to_have_url(HomePage.catalog_url)
 
-    #page.wait_for_selector(HomePage.navbar_home_btn)
-
-    #page.locator(HomePage.navbar_home_btn).click()
-
-    #expect(page).to_have_url(HomePage.home_url)
-
-    #page.wait_for_selector(HomePage.navbar_contact_btn)
-
     page.locator(HomePage.navbar_contact_btn).click()
 
     expect(page).to_have_url(HomePage.contact_url)
-
-    #page.wait_for_selector(HomePage.header_btn)
 
     page.locator(HomePage.header_btn).click()
 
