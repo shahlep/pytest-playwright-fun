@@ -1,6 +1,9 @@
+import pytest
 from playwright.sync_api import Playwright, sync_playwright, expect
+from pytest import mark
 
 
+@mark.ui
 def test_website_navigation(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=True, slow_mo=1000)
     context = browser.new_context()
@@ -20,7 +23,7 @@ def test_website_navigation(playwright: Playwright) -> None:
     page.locator("button:has-text(\"Enter\")").click()
     # expect(page).to_have_url("https://shahlep.myshopify.com/")
     expect(page).to_have_url("https://shahlep.myshopify.com/")
-    #assert page.url()
+    # assert page.url()
     # Click span:has-text("Catalog")
     page.locator("span:has-text(\"Catalog\")").click()
     # expect(page).to_have_url("https://shahlep.myshopify.com/collections/all")
