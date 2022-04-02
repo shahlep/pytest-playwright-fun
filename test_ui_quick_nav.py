@@ -1,10 +1,10 @@
 import pytest
 from playwright.sync_api import Playwright, sync_playwright, expect
 from pytest import mark
-
+from home_page_elements import HomePage
 
 @mark.ui
-def test_website_navigation(playwright: Playwright) -> None:
+def test_homepage_navigation(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=True, slow_mo=1000)
     context = browser.new_context()
 
@@ -15,32 +15,31 @@ def test_website_navigation(playwright: Playwright) -> None:
     page.goto("https://shahlep.myshopify.com/password")
 
     # Click input[name="password"]
-    page.locator("input[name=\"password\"]").click()
+    page.locator(HomePage.login_password_input).click()
     # Fill input[name="password"]
-    page.locator("input[name=\"password\"]").fill("taisia<3")
+    page.locator(HomePage.login_password_input).fill("taisia<3")
 
     # Click button:has-text("Enter")
-    page.locator("button:has-text(\"Enter\")").click()
+    page.locator(HomePage.login_submit).click()
     # expect(page).to_have_url("https://shahlep.myshopify.com/")
-    expect(page).to_have_url("https://shahlep.myshopify.com/")
-    # assert page.url()
+    expect(page).to_have_url(HomePage.home_url)
     # Click span:has-text("Catalog")
-    page.locator("span:has-text(\"Catalog\")").click()
+    page.locator(HomePage.navbar_catalog_btn).click()
     # expect(page).to_have_url("https://shahlep.myshopify.com/collections/all")
-    expect(page).to_have_url("https://shahlep.myshopify.com/collections/all")
+    expect(page).to_have_url(HomePage.catalog_url)
     # Click span:has-text("Home")
-    page.locator("span:has-text(\"Home\")").click()
+    page.locator(HomePage.navbar_home_btn).click()
     # expect(page).to_have_url("https://shahlep.myshopify.com/")
-    expect(page).to_have_url("https://shahlep.myshopify.com/")
+    expect(page).to_have_url(HomePage.home_url)
 
     # Click span:has-text("Contact")
-    page.locator("span:has-text(\"Contact\")").click()
+    page.locator(HomePage.navbar_contact_btn).click()
     # expect(page).to_have_url("https://shahlep.myshopify.com/pages/contact")
-    expect(page).to_have_url("https://shahlep.myshopify.com/pages/contact")
+    expect(page).to_have_url(HomePage.contact_url)
     # Click span:has-text("shahlep")
-    page.locator("span:has-text(\"shahlep\")").click()
+    page.locator(HomePage.header_btn).click()
     # expect(page).to_have_url("https://shahlep.myshopify.com/")
-    expect(page).to_have_url("https://shahlep.myshopify.com/")
+    expect(page).to_have_url(HomePage.home_url)
 
     # ---------------------
     context.close()
