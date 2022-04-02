@@ -27,7 +27,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         python -m pip install pytest-playwright
-        python -m pip install playwright
+        python -m pip install playwright chromium
         python -m playwright install
     - name: Test with pytest
       env:
