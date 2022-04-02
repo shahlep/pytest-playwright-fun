@@ -9,7 +9,7 @@ from home_page_elements import HomePage
 
 @mark.ui
 def test_homepage_navigation(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch(headless=False, slow_mo=1000)
+    browser = playwright.chromium.launch(headless=True, slow_mo=1000)
     context = browser.new_context()
 
     # Open new page
