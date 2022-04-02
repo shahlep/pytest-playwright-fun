@@ -31,6 +31,6 @@ jobs:
         python -m playwright install
     - name: Test with pytest
       env:
-        PASSWORD: ${{secret.PASSWORD}}
+        PASSWORD: ${{secrets.PASSWORD}}
       run: |
         pytest -m ui
