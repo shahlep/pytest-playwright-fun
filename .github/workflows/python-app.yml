@@ -29,6 +29,7 @@ jobs:
         python -m pip install pytest-playwright
         python -m pip install playwright
         python -m playwright install
+        python -m playwright install-deps
     - name: Test with pytest
       env:
         PASSWORD: ${{secrets.PASSWORD}}
