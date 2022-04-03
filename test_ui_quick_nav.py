@@ -24,7 +24,7 @@ def test_homepage_navigation(playwright: Playwright) -> None:
 
     page.locator(HomePage.login_submit).click()
 
-    page.wait_for_load_state()
+    page.wait_for_load_state(timeout=10000)
     #expect(page).to_have_url(HomePage.home_url)
 
     page.locator(HomePage.navbar_catalog_btn).click()
