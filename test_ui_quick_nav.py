@@ -4,12 +4,8 @@ from pytest import mark
 
 from home_page_elements import HomePage
 
-try:
-    PASSWORD = os.environ['PASSWORD']
-except KeyError:
-    import utils.secret_config
+PASSWORD = os.environ['PASSWORD']
 
-    PASSWORD = utils.secret_config.PASSWORD
 
 
 @mark.ui
