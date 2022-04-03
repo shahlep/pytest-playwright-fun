@@ -16,7 +16,7 @@ def test_homepage_navigation(playwright: Playwright) -> None:
     # Open new page
     page = context.new_page()
     page.goto(HomePage.home_url)
-    page.pause()
+    #page.pause()
 
     page.locator(HomePage.login_password_input).click()
 
