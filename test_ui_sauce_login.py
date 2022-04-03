@@ -4,12 +4,13 @@ from pytest import mark
 
 
 @mark.sauce
-@mark.parametrize("user, password", [('standard_user', 'secret_sauce'),
-                                     pytest.param('standard_user', 'secret', marks=mark.xfail),
-                                     pytest.param('test', 'secret_sauce',marks=mark.xfail),
-                                     pytest.param('standard_user', '',marks=mark.xfail),
-                                     pytest.param('', 'secret_sauce',marks=mark.xfail),
-                                     pytest.param('', '',marks=mark.xfail)])
+@mark.parametrize("user", ['standard_user',
+                           pytest.param('test', marks=mark.xfail),
+                           pytest.param('', marks=mark.xfail)])
+@mark.sauce
+@mark.parametrize("password", ['secret_sauce',
+                               pytest.param('secret', marks=mark.xfail),
+                               pytest.param('', marks=mark.xfail)])
 def test_login_scenarios(playwright: Playwright, user, password) -> None:
     browser = playwright.chromium.launch(headless=True)
     context = browser.new_context()
