@@ -12,7 +12,7 @@ from pytest import mark
                                pytest.param('secret', marks=mark.xfail),
                                pytest.param('', marks=mark.xfail)])
 def test_login_scenarios(playwright: Playwright, user, password) -> None:
-    browser = playwright.chromium.launch(headless=True)
+    browser = playwright.firefox.launch(headless=True)
     context = browser.new_context()
 
     # Open new page
