@@ -6,11 +6,13 @@ from pytest import mark
 @mark.sauce
 @mark.parametrize("user", ['standard_user',
                            pytest.param('test', marks=mark.xfail),
-                           pytest.param('', marks=mark.xfail)])
+                           pytest.param('', marks=mark.xfail),
+                           pytest.param('!"#€%', marks=mark.xfail)])
 @mark.sauce
 @mark.parametrize("password", ['secret_sauce',
                                pytest.param('secret', marks=mark.xfail),
-                               pytest.param('', marks=mark.xfail)])
+                               pytest.param('', marks=mark.xfail),
+                               pytest.param('?=)(/', marks=mark.xfail)])
 def test_login_scenarios(playwright: Playwright, user, password) -> None:
     browser = playwright.webkit.launch(headless=True)
     context = browser.new_context()
