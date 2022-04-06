@@ -8,13 +8,15 @@ from pytest import mark
                            pytest.param('test', marks=mark.xfail),
                            pytest.param('', marks=mark.xfail),
                            pytest.param('!"#€%', marks=mark.xfail),
-                           pytest.param('äöåää', marks=mark.xfail)])
+                           pytest.param('äöåää', marks=mark.xfail),
+                           pytest.param('123456', marks=mark.xfail)])
 @mark.sauce
 @mark.parametrize("password", ['secret_sauce',
                                pytest.param('secret', marks=mark.xfail),
                                pytest.param('', marks=mark.xfail),
                                pytest.param('?=)(/', marks=mark.xfail),
-                               pytest.param('äöääå',marks=mark.xfail)])
+                               pytest.param('äöääå',marks=mark.xfail),
+                               pytest.param('123456', marks=mark.xfail)])
 def test_login_scenarios(playwright: Playwright, user, password) -> None:
     browser = playwright.chromium.launch(headless=True)
     context = browser.new_context()
