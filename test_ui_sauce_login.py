@@ -18,7 +18,7 @@ from pytest import mark
                                pytest.param('äöääå',marks=mark.xfail),
                                pytest.param('123456', marks=mark.xfail)])
 def test_login_scenarios(playwright: Playwright, user, password) -> None:
-    browser = playwright.webkit.launch(headless=True)
+    browser = playwright.chromium.launch(headless=True)
     context = browser.new_context()
 
     # Open new page

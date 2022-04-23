@@ -34,4 +34,4 @@ jobs:
       env:
         PASSWORD: ${{secrets.PASSWORD}}
       run: |
-        pytest -m sauce
+        pytest -m sauce -v
